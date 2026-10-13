@@ -1,0 +1,17 @@
+# ============================================================================
+# Patrick Grey Forex Portfolio — Apache Security & Routing Configuration
+# ============================================================================
+
+Options -Indexes
+
+# Block direct HTTP access to hidden files (.env, .git, etc.) and SQL files
+<FilesMatch "^\.|\.(sql|sqlite|sqlite3|db|log|ini|sh|bak)$">
+    Require all denied
+</FilesMatch>
+
+# Security Headers (when mod_headers is enabled in Apache/XAMPP)
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
